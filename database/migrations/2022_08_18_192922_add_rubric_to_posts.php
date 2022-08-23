@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangePostsTable extends Migration
+class AddRubricToPosts extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class ChangePostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-			$table->string('title', 100)->change();
-			$table->text('content')->nullable()->change();
+            $table->integer('rubric_id');
         });
     }
 
@@ -27,8 +26,7 @@ class ChangePostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-			$table->string('title')->change();
-			$table->text('content')->nullable(false)->change();
+            $table->dropColumn('rubric_id');
         });
     }
 }
