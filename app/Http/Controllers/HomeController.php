@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
+use App\Post;
+use App\Rubric;
+use App\Tag;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller {
 
 	public function index() {
-//		$data = DB::table('country')->get();
-//		$data = DB::table('country')->limit(5)->get();
-//		$data = DB::table('country')->select('Code', 'Name')->limit(5)->get();
-//		$data = DB::table('country')->select('Code', 'Name')->first();
-//		$data = DB::table('country')->select('Code', 'Name')->orderBy('Code', 'desc')->first();
-//		$data = DB::table('city')->select('ID', 'Name')->find(2);
-		$data = DB::table('city')->select('ID', 'Name')->where([
-			['ID', '>','1'],
-			['ID', '<','5']
-		])->get();
-		return dd($data);
+
+//        $post = Post::find(2);
+//        dd($post->rubric->title);
+
+        $tag = Tag::find(1);
+        foreach ($tag->posts as $post) {
+            dump($post->title);
+        }
 		return view('home', ['res'=> 5, 'name' => 'John']);
 	}
 
